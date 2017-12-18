@@ -25,12 +25,24 @@
                                             label: "Defense",
                                             backgroundColor: '#386396',
                                             borderColor: '#386396',
-                                            data: [0, 0, 0, 0, 0, 0],
+                                            data: [0, 0, 0, 0, 0, 0]},
+                                            {
+                                                label: "Team Average",
+                                                backgroundColor: '#EE324E',
+                                                borderColor: '#EE324E',
+                                                data: [1.74,	1.45,	0.73,	0.15,	1.23,	0.30],
+
+
+
                                         }]
                                     },
 
                                     // Configuration options go here
                                     options: {
+                                      title: {
+                                          display: true,
+                                          text: 'Defense'
+                                      },
 
                                       responsive: false,
 
@@ -55,44 +67,59 @@
 
 //chartjs offense
 
-                      var ctx1 = document.getElementById('offense').getContext('2d');
+var ctx1 = document.getElementById('offense').getContext('2d');
 
-                      var chart1 = new Chart(ctx1, {
-                          // The type of chart we want to create
-                          type: 'bar',
 
-                          // The data for our dataset
-                          data: {
-                              labels: ["Shots",	"Key Passes",	"Offsides",	"Disposed",	"Crosses",	"Long Balls"],
-                              datasets: [{
-                                  label: "Offense",
-                                  backgroundColor: '#386396',
-                                  borderColor: '#386396',
-                                  data: [0, 0, 0, 0, 0, 0],
-                              }]
-                          },
+var chart1 = new Chart(ctx1, {
+    // The type of chart we want to create
+    type: 'bar',
 
-                          // Configuration options go here
-                          options: {
-
-                            responsive: false,
-
-                            scales: {
-                            yAxes: [{
-                                ticks: {
-                                    // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
-                                    min: 0,
-                                    // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
-                                    max: 8
+    // The data for our dataset
+    data: {
+        labels: ["Shots",	"Key Passes",	"Offsides",	"Disposed",	"Crosses",	"Long Balls"],
+        datasets: [{
+            label: "Offense",
+            backgroundColor: '#386396',
+            borderColor: '#386396',
+            data: [0, 0, 0, 0, 0, 0]},
+            {
+                label: "Team Average",
+                backgroundColor: '#EE324E',
+                borderColor: '#EE324E',
+                data: [1.67,	1.13,	0.24,	0.95,	0.47,	3.77],
 
 
 
-                          }
-                        }]
-                       }
-                      }
-                    }
-                  );
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      title: {
+          display: true,
+          text: 'Offense'
+      },
+
+      responsive: false,
+
+
+            scales: {
+            yAxes: [{
+                ticks: {
+                    // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
+                    min: 0,
+                    // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
+                    max: 8
+
+
+
+                  }
+                }]
+               }
+              }
+            }
+          );
+
 
 
 
@@ -106,9 +133,12 @@
 
                     var info = data.filter(function(d){return d.jerseynumber == jerseynumber;});
 
+                    console.log(info);
+
 
 
                     function updateOData(chart) {
+                      chart.data.datasets[0].label = info[0].player;
                       chart.data.datasets[0].data[0] = info[0].spg;
                       chart.data.datasets[0].data[1] = info[0].keyp;
                       chart.data.datasets[0].data[2] = info[0].off;
@@ -122,6 +152,7 @@
 
 
                 function updateDData(chart) {
+                  chart.data.datasets[0].label = info[0].player;
                   chart.data.datasets[0].data[0] = info[0].tackles;
                   chart.data.datasets[0].data[1] = info[0].inter;
                   chart.data.datasets[0].data[2] = info[0].fouls;
