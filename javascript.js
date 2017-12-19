@@ -67,58 +67,102 @@
 
 //chartjs offense
 
-var ctx1 = document.getElementById('offense').getContext('2d');
+                        var ctx1 = document.getElementById('offense').getContext('2d');
 
 
-var chart1 = new Chart(ctx1, {
-    // The type of chart we want to create
-    type: 'bar',
+                        var chart1 = new Chart(ctx1, {
+                            // The type of chart we want to create
+                            type: 'bar',
 
-    // The data for our dataset
-    data: {
-        labels: ["Shots",	"Key Passes",	"Offsides",	"Disposed",	"Crosses",	"Long Balls"],
-        datasets: [{
-            label: "Offense",
-            backgroundColor: '#386396',
-            borderColor: '#386396',
-            data: [0, 0, 0, 0, 0, 0]},
-            {
-                label: "Team Average",
-                backgroundColor: '#EE324E',
-                borderColor: '#EE324E',
-                data: [1.67,	1.13,	0.24,	0.95,	0.47,	3.77],
-
-
-
-        }]
-    },
-
-    // Configuration options go here
-    options: {
-      title: {
-          display: true,
-          text: 'Offense'
-      },
-
-      responsive: false,
-
-
-            scales: {
-            yAxes: [{
-                ticks: {
-                    // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
-                    min: 0,
-                    // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
-                    max: 8
+                            // The data for our dataset
+                            data: {
+                                labels: ["Shots",	"Key Passes",	"Offsides",	"Disposed",	"Crosses",	"Long Balls"],
+                                datasets: [{
+                                    label: "Offense",
+                                    backgroundColor: '#386396',
+                                    borderColor: '#386396',
+                                    data: [0, 0, 0, 0, 0, 0]},
+                                    {
+                                        label: "Team Average",
+                                        backgroundColor: '#EE324E',
+                                        borderColor: '#EE324E',
+                                        data: [1.67,	1.13,	0.24,	0.95,	0.47,	3.77],
 
 
 
-                  }
-                }]
-               }
-              }
-            }
-          );
+                                }]
+                            },
+
+                            // Configuration options go here
+                            options: {
+                              title: {
+                                  display: true,
+                                  text: 'Offense'
+                              },
+
+                              responsive: false,
+
+
+                                    scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
+                                            min: 0,
+                                            // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
+                                            max: 8
+
+
+
+                                          }
+                                        }]
+                                       }
+                                      }
+                                    }
+                                  );
+
+
+
+
+
+               //chartjs radar
+
+                        var ctx2= document.getElementById('radar').getContext('2d');
+
+
+                        var chart2 = new Chart(ctx2, {
+                            // The type of chart we want to create
+                            type: 'radar',
+
+                            // The data for our dataset
+                            data: {
+                                labels: ["attackingprowess",	"ballcontrol",	"defensiveprowess",	"speed",	"jump",	"kickingpower"],
+                                datasets: [{
+                                    label: "Skill",
+                                    backgroundColor: '#38639680',
+                                    borderColor: '#38639680',
+                                    data: [0, 0, 0, 0, 0, 0]},
+                                    {
+                                        label: "Team Average",
+                                        backgroundColor: '#EE324E80',
+                                        borderColor: '#EE324E80',
+                                        data: [73,	82,	74,	80,	79,	82],
+
+
+
+                                }]
+                            },
+
+                            // Configuration options go here
+                            options: {
+                              title: {
+                                  display: true,
+                                  text: 'Player Stats'
+                              },
+
+                              responsive: false,
+
+                                       }
+                                      });
 
 
 
@@ -148,6 +192,16 @@ var chart1 = new Chart(ctx1, {
                       chart.update();
                   }
 
+                      function updateRadar(chart) {
+                      chart.data.datasets[0].label = info[0].player;
+                      chart.data.datasets[0].data[0] = info[0].attackingprowess;
+                      chart.data.datasets[0].data[1] = info[0].ballcontrol;
+                      chart.data.datasets[0].data[2] = info[0].defensiveprowess;
+                      chart.data.datasets[0].data[3] = info[0].speed;
+                      chart.data.datasets[0].data[4] = info[0].jump;
+                      chart.data.datasets[0].data[5] = info[0].kickingpower;
+                      chart.update();
+                  }
 
 
 
@@ -165,6 +219,8 @@ var chart1 = new Chart(ctx1, {
 
               updateDData(chart);
               updateOData(chart1);
+              updateRadar(chart2);
+
 
 
             }
@@ -215,7 +271,7 @@ var chart1 = new Chart(ctx1, {
                                 .text(function (d) {return d.player;})
                                 .attr("x", 37)
                                 .attr("y", -10)
-                                .attr("font-size", 12)
+                                .attr("font-size", 13)
                                 .attr("fill", "white")
                                 .attr("font-family", "Roboto")
                                 .attr("text-anchor", "middle");
