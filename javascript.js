@@ -16,7 +16,7 @@
 
                                 var chart = new Chart(ctx, {
                                     // The type of chart we want to create
-                                    type: 'bar',
+                                    type: 'horizontalBar',
 
                                     // The data for our dataset
                                     data: {
@@ -48,7 +48,8 @@
 
 
                                             scales: {
-                                            yAxes: [{
+
+                                            xAxes: [{
                                                 ticks: {
                                                     // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
                                                     min: 0,
@@ -59,6 +60,8 @@
 
                                                   }
                                                 }]
+
+
                                                }
                                               }
                                             }
@@ -72,7 +75,7 @@
 
                         var chart1 = new Chart(ctx1, {
                             // The type of chart we want to create
-                            type: 'bar',
+                            type: 'horizontalBar',
 
                             // The data for our dataset
                             data: {
@@ -104,7 +107,7 @@
 
 
                                     scales: {
-                                    yAxes: [{
+                                    xAxes: [{
                                         ticks: {
                                             // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
                                             min: 0,
@@ -161,8 +164,18 @@
 
                               responsive: false,
 
-                                       }
-                                      });
+                              scale: {
+                                display: true,
+
+                              }
+
+
+
+
+
+                                      }
+                                    }
+                                  );
 
 
 
@@ -176,8 +189,13 @@
 
 
                     var info = data.filter(function(d){return d.jerseynumber == jerseynumber;});
+                    function picture(x){
+                      return "player/" + x + ".png";
+                    }
 
-                    console.log(info);
+                    document.getElementById("myImage").src = picture(info[0].jerseynumber);
+                        document.getElementById("myImage").style.marginLeft = "25px";
+
 
 
 
@@ -215,6 +233,9 @@
                   chart.data.datasets[0].data[5] = info[0].blocks;
                   chart.update();
               }
+
+
+
 
 
               updateDData(chart);
