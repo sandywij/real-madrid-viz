@@ -189,9 +189,9 @@
 
 
                     var info = data.filter(function(d){return d.jerseynumber == jerseynumber;});
+
                     function picture(x){
-                      return "player/" + x + ".png";
-                    }
+                      return "player/" + x + ".png";}
 
                     document.getElementById("myImage").src = picture(info[0].jerseynumber);
                         document.getElementById("myImage").style.marginLeft = "25px";
